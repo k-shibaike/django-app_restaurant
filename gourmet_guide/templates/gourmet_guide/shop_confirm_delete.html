@@ -1,0 +1,17 @@
+<!-- ファイルpathを省略するとプロジェクト全体のテンプレートを使用 -->
+{% extends 'layout.html' %} 
+
+<!-- コンテンツ開始 -->
+{% block content %}
+
+<h1>お店情報の削除</h1>
+<p>「{{ object.name }}」を削除しますか？</p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <button type="submit" class="submit delete">削除</button>
+</form>
+<div>
+  <a href="Javascript:history.back()">&lt; 戻る</a>
+</div>
+<!-- コンテンツ終了 -->
+{% endblock %}

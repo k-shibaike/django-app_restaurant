@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop list</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+    <div class="container">
+      <a class='navbar-brand' href='{% url "gourmet_guide:index" %}'>おすすめご飯やさん</a>
+      <ul class='navbar-nav'>
+        {% if user.is_authenticated %}
+            <li class='nav-time'>
+                <span class='navbar-text'>{{ user }} - </span>
+            </li>
+            <li class='nav-item'>
+                <a href='{% url "logout" %}' class='logout nav-link'>Logout</a>
+            </li>
+        {% else %}
+        <li>
+          <a href='{% url "login" %}' class='login nav-link'>Login</a>
+        </li>
+        <li>
+          <a href='{% url "accounts:signup" %}' class='signup nav-link'> Sign up </a>
+        </li>
+        {% endif %}
+    </ul>
+    </div>
+   
+  </nav>
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

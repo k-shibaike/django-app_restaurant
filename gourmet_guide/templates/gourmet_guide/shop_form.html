@@ -1,0 +1,21 @@
+<!-- ファイルpathを省略するとプロジェクト全体のテンプレートを使用 -->
+{% extends 'layout.html' %} 
+
+<!-- コンテンツ開始 -->
+{% block content %}
+
+<h1>お店情報の{{ object|yesno:'更新,作成' }}</h1>
+
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="submit">
+    {{ object|yesno:'更新,作成' }}
+  </button>
+</form>
+
+<div>
+  <a href="Javascript:history.back()">&lt; 戻る</a>
+</div>
+<!-- コンテンツ終了 -->
+{% endblock %}
