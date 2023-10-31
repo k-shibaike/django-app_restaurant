@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.dispatch import receiver
 
 
 # カテゴリモデル: 飲食店のカテゴリ（例: フレンチ、イタリアン、寿司など）を表現
@@ -58,3 +59,10 @@ class Shop(models.Model):
     
     def get_absolute_url(self):
         return reverse('gourmet_guide:detail', kwargs={'pk': self.pk})
+
+# 画像ファイルの削除
+@receiver(models.signals.post_delete, sender=Shop)
+def auto_delete_image(sender, instance, **kwargs):
+    file = instance.image
+    file.storage.delete(name=file.name)
+    

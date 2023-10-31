@@ -42,6 +42,7 @@ class DetailView(generic.DetailView):
 
         context['coordinates'] = ",".join(map(str, reversed_coordinates))
         print("context['coordinates']", context['coordinates'])
+        print(context)
 
         return context
 
